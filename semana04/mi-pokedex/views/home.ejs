@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+</head>
+<body class="container">
+
+    <nav>
+      <div class="nav-wrapper teal">
+        <a href="/" class="brand-logo center">Mi Pokédex</a>
+      </div>
+    </nav>
+
+    <h4 class="center-align">Agregar Pokémon</h4>
+
+    <form action="/pokemon" method="POST">
+        <div class="input-field">
+            <input id="nombre" type="text" name="nombre" required>
+            <label for="nombre">Nombre</label>
+        </div>
+
+        <div class="input-field">
+            <input id="tipo" type="text" name="tipo" required>
+            <label for="tipo">Tipo (ej: Fuego, Agua, Planta)</label>
+        </div>
+
+        <div class="input-field">
+            <input id="nivel" type="number" name="nivel" required>
+            <label for="nivel">Nivel</label>
+        </div>
+
+        <div class="input-field">
+            <input id="vida" type="number" name="vida" required>
+            <label for="vida">Vida (HP)</label>
+        </div>
+
+        <div class="input-field">
+            <input id="habilidad" type="text" name="habilidad" required>
+            <label for="habilidad">Habilidad</label>
+        </div>
+
+        <button type="submit" class="waves-effect waves-light btn">Agregar</button>
+    </form>
+
+    <h4 class="center-align">Lista de Pokémon</h4>
+
+    <table class="striped">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Tipo</th>
+                <th>Nivel</th>
+                <th>Vida (HP)</th>
+                <th>Habilidad</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (pokemones.length === 0) { %>
+                <tr><td colspan="5" class="center-align">Aún no hay Pokémon agregados.</td></tr>
+            <% } else { %>
+                <% pokemones.forEach(p => { %>
+                    <tr>
+                        <td><%= p.nombre %></td>
+                        <td><%= p.tipo %></td>
+                        <td><%= p.nivel %></td>
+                        <td><%= p.vida %></td>
+                        <td><%= p.habilidad %></td>
+                    </tr>
+                <% }) %>
+            <% } %>
+        </tbody>
+    </table>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>
